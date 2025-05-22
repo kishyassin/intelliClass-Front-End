@@ -133,6 +133,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.int,
             ),
           ),
+        ),
+        FFRoute(
+          name: AssignmentDetailsWidget.routeName,
+          path: AssignmentDetailsWidget.routePath,
+          builder: (context, params) => AssignmentDetailsWidget(
+            assignmentID: params.getParam(
+              'assignmentID',
+              ParamType.int,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

@@ -1,5 +1,4 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/form_field_controller.dart';
 import '/index.dart';
 import 'create_account_widget.dart' show CreateAccountWidget;
 import 'package:flutter/material.dart';
@@ -7,14 +6,6 @@ import 'package:flutter/material.dart';
 class CreateAccountModel extends FlutterFlowModel<CreateAccountWidget> {
   ///  State fields for stateful widgets in this page.
 
-  // State field(s) for firstName widget.
-  FocusNode? firstNameFocusNode;
-  TextEditingController? firstNameTextController;
-  String? Function(BuildContext, String?)? firstNameTextControllerValidator;
-  // State field(s) for lastName widget.
-  FocusNode? lastNameFocusNode;
-  TextEditingController? lastNameTextController;
-  String? Function(BuildContext, String?)? lastNameTextControllerValidator;
   // State field(s) for emailAddress widget.
   FocusNode? emailAddressFocusNode;
   TextEditingController? emailAddressTextController;
@@ -30,9 +21,6 @@ class CreateAccountModel extends FlutterFlowModel<CreateAccountWidget> {
   late bool passwordConfirmVisibility;
   String? Function(BuildContext, String?)?
       passwordConfirmTextControllerValidator;
-  // State field(s) for DropDown widget.
-  String? dropDownValue;
-  FormFieldController<String>? dropDownValueController;
 
   @override
   void initState(BuildContext context) {
@@ -42,12 +30,6 @@ class CreateAccountModel extends FlutterFlowModel<CreateAccountWidget> {
 
   @override
   void dispose() {
-    firstNameFocusNode?.dispose();
-    firstNameTextController?.dispose();
-
-    lastNameFocusNode?.dispose();
-    lastNameTextController?.dispose();
-
     emailAddressFocusNode?.dispose();
     emailAddressTextController?.dispose();
 

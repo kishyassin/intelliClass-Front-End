@@ -14,9 +14,6 @@ class ProfileRow extends SupabaseDataRow {
   @override
   SupabaseTable get table => ProfileTable();
 
-  DateTime get createdAt => getField<DateTime>('created_at')!;
-  set createdAt(DateTime value) => setField<DateTime>('created_at', value);
-
   String? get firstName => getField<String>('first_name');
   set firstName(String? value) => setField<String>('first_name', value);
 

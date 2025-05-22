@@ -123,6 +123,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.int,
             ),
           ),
+        ),
+        FFRoute(
+          name: CrreateAssignementWidget.routeName,
+          path: CrreateAssignementWidget.routePath,
+          builder: (context, params) => CrreateAssignementWidget(
+            courseID: params.getParam(
+              'courseID',
+              ParamType.int,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

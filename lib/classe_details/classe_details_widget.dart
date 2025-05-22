@@ -106,12 +106,7 @@ class _ClasseDetailsWidgetState extends State<ClasseDetailsWidget> {
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
-                                borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(0.0),
-                                  bottomRight: Radius.circular(0.0),
-                                  topLeft: Radius.circular(16.0),
-                                  topRight: Radius.circular(16.0),
-                                ),
+                                borderRadius: BorderRadius.circular(14.0),
                               ),
                               child: Padding(
                                 padding: EdgeInsets.all(16.0),
@@ -203,7 +198,14 @@ class _ClasseDetailsWidgetState extends State<ClasseDetailsWidget> {
                                     FFButtonWidget(
                                       onPressed: () async {
                                         context.pushNamed(
-                                            CreateClassWidget.routeName);
+                                          CrreateAssignementWidget.routeName,
+                                          queryParameters: {
+                                            'courseID': serializeParam(
+                                              widget.classesID,
+                                              ParamType.int,
+                                            ),
+                                          }.withoutNulls,
+                                        );
                                       },
                                       text: 'Assignement',
                                       icon: Icon(
@@ -260,7 +262,7 @@ class _ClasseDetailsWidgetState extends State<ClasseDetailsWidget> {
                           ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 4.0, 0.0, 4.0),
+                                0.0, 16.0, 0.0, 4.0),
                             child: FutureBuilder<List<AssignmentsRow>>(
                               future: AssignmentsTable().queryRows(
                                 queryFn: (q) => q.eqOrNull(

@@ -1,9 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import '/index.dart';
-import 'student_dashboard_widget.dart' show StudentDashboardWidget;
+import 'assignment_details_widget.dart' show AssignmentDetailsWidget;
 import 'package:flutter/material.dart';
 
-class StudentDashboardModel extends FlutterFlowModel<StudentDashboardWidget> {
+class AssignmentDetailsModel extends FlutterFlowModel<AssignmentDetailsWidget> {
   @override
   void initState(BuildContext context) {}
 

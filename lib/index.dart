@@ -9,3 +9,5 @@ export '/create_class/create_class_widget.dart' show CreateClassWidget;
 export '/classe_details/classe_details_widget.dart' show ClasseDetailsWidget;
 export '/create_assignement/create_assignement_widget.dart'
     show CreateAssignementWidget;
+export '/assignment_details/assignment_details_widget.dart'
+    show AssignmentDetailsWidget;

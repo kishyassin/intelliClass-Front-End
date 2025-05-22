@@ -38,4 +38,7 @@ class AssignmentsRow extends SupabaseDataRow {
 
   dynamic get fraudFilters => getField<dynamic>('fraud_filters');
   set fraudFilters(dynamic value) => setField<dynamic>('fraud_filters', value);
+
+  String? get resourceUrl => getField<String>('resource_url');
+  set resourceUrl(String? value) => setField<String>('resource_url', value);
 }

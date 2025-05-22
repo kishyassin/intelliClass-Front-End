@@ -125,9 +125,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: CrreateAssignementWidget.routeName,
-          path: CrreateAssignementWidget.routePath,
-          builder: (context, params) => CrreateAssignementWidget(
+          name: CreateAssignementWidget.routeName,
+          path: CreateAssignementWidget.routePath,
+          builder: (context, params) => CreateAssignementWidget(
             courseID: params.getParam(
               'courseID',
               ParamType.int,

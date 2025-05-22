@@ -1,10 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import '/index.dart';
-import 'crreate_assignement_widget.dart' show CrreateAssignementWidget;
+import 'create_assignement_widget.dart' show CreateAssignementWidget;
 import 'package:flutter/material.dart';
 
-class CrreateAssignementModel
-    extends FlutterFlowModel<CrreateAssignementWidget> {
+class CreateAssignementModel extends FlutterFlowModel<CreateAssignementWidget> {
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for assignementName widget.
@@ -16,29 +14,35 @@ class CrreateAssignementModel
   FocusNode? textFieldFocusNode;
   TextEditingController? textController2;
   String? Function(BuildContext, String?)? textController2Validator;
-  // State field(s) for Switch widget.
-  bool? switchValue1;
-  // State field(s) for Switch widget.
-  bool? switchValue2;
-  // State field(s) for Switch widget.
-  bool? switchValue3;
-  // State field(s) for Switch widget.
-  bool? switchValue4;
-  // State field(s) for Switch widget.
-  bool? switchValue5;
+  DateTime? datePicked;
+  bool isDataUploading = false;
+  FFUploadedFile uploadedLocalFile =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+  String uploadedFileUrl = '';
+
+  // State field(s) for isVscode widget.
+  bool? isVscodeValue;
+  // State field(s) for isTerminal widget.
+  bool? isTerminalValue;
+  // State field(s) for isPython widget.
+  bool? isPythonValue;
+  // State field(s) for isPdfViewer widget.
+  bool? isPdfViewerValue;
+  // State field(s) for isFileManager widget.
+  bool? isFileManagerValue;
   // State field(s) for addConfigurationTool widget.
   FocusNode? addConfigurationToolFocusNode;
   TextEditingController? addConfigurationToolTextController;
   String? Function(BuildContext, String?)?
       addConfigurationToolTextControllerValidator;
-  // State field(s) for Switch widget.
-  bool? switchValue6;
-  // State field(s) for Switch widget.
-  bool? switchValue7;
-  // State field(s) for Switch widget.
-  bool? switchValue8;
-  // State field(s) for Switch widget.
-  bool? switchValue9;
+  // State field(s) for isClassmates widget.
+  bool? isClassmatesValue;
+  // State field(s) for isPrevious widget.
+  bool? isPreviousValue;
+  // State field(s) for isPlagia widget.
+  bool? isPlagiaValue;
+  // State field(s) for isCam widget.
+  bool? isCamValue;
 
   @override
   void initState(BuildContext context) {}

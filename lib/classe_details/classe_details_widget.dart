@@ -198,7 +198,7 @@ class _ClasseDetailsWidgetState extends State<ClasseDetailsWidget> {
                                     FFButtonWidget(
                                       onPressed: () async {
                                         context.pushNamed(
-                                          CrreateAssignementWidget.routeName,
+                                          CreateAssignementWidget.routeName,
                                           queryParameters: {
                                             'courseID': serializeParam(
                                               widget.classesID,

@@ -1,40 +1,39 @@
-import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/index.dart';
+import '/flutter_flow/upload_data.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'crreate_assignement_model.dart';
-export 'crreate_assignement_model.dart';
+import 'create_assignement_model.dart';
+export 'create_assignement_model.dart';
 
-class CrreateAssignementWidget extends StatefulWidget {
-  const CrreateAssignementWidget({
+class CreateAssignementWidget extends StatefulWidget {
+  const CreateAssignementWidget({
     super.key,
     required this.courseID,
   });
 
   final int? courseID;
 
-  static String routeName = 'crreateAssignement';
-  static String routePath = '/crreateAssignement';
+  static String routeName = 'createAssignement';
+  static String routePath = '/createAssignement';
 
   @override
-  State<CrreateAssignementWidget> createState() =>
-      _CrreateAssignementWidgetState();
+  State<CreateAssignementWidget> createState() =>
+      _CreateAssignementWidgetState();
 }
 
-class _CrreateAssignementWidgetState extends State<CrreateAssignementWidget> {
-  late CrreateAssignementModel _model;
+class _CreateAssignementWidgetState extends State<CreateAssignementWidget> {
+  late CreateAssignementModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => CrreateAssignementModel());
+    _model = createModel(context, () => CreateAssignementModel());
 
     _model.assignementNameTextController ??= TextEditingController();
     _model.assignementNameFocusNode ??= FocusNode();
@@ -42,18 +41,18 @@ class _CrreateAssignementWidgetState extends State<CrreateAssignementWidget> {
     _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
-    _model.switchValue1 = true;
-    _model.switchValue2 = true;
-    _model.switchValue3 = true;
-    _model.switchValue4 = true;
-    _model.switchValue5 = true;
+    _model.isVscodeValue = true;
+    _model.isTerminalValue = true;
+    _model.isPythonValue = true;
+    _model.isPdfViewerValue = true;
+    _model.isFileManagerValue = true;
     _model.addConfigurationToolTextController ??= TextEditingController();
     _model.addConfigurationToolFocusNode ??= FocusNode();
 
-    _model.switchValue6 = true;
-    _model.switchValue7 = false;
-    _model.switchValue8 = true;
-    _model.switchValue9 = true;
+    _model.isClassmatesValue = true;
+    _model.isPreviousValue = false;
+    _model.isPlagiaValue = true;
+    _model.isCamValue = true;
   }
 
   @override
@@ -351,32 +350,114 @@ class _CrreateAssignementWidgetState extends State<CrreateAssignementWidget> {
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 16.0),
-                          child: Container(
-                            width: double.infinity,
-                            height: 50.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .primaryBackground,
-                              borderRadius: BorderRadius.circular(8.0),
-                              border: Border.all(
-                                color: FlutterFlowTheme.of(context).alternate,
-                                width: 1.0,
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              final _datePickedDate = await showDatePicker(
+                                context: context,
+                                initialDate: getCurrentTimestamp,
+                                firstDate: getCurrentTimestamp,
+                                lastDate: DateTime(2050),
+                                builder: (context, child) {
+                                  return wrapInMaterialDatePickerTheme(
+                                    context,
+                                    child!,
+                                    headerBackgroundColor:
+                                        FlutterFlowTheme.of(context).primary,
+                                    headerForegroundColor:
+                                        FlutterFlowTheme.of(context).info,
+                                    headerTextStyle:
+                                        FlutterFlowTheme.of(context)
+                                            .headlineLarge
+                                            .override(
+                                              font: GoogleFonts.interTight(
+                                                fontWeight: FontWeight.w600,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .headlineLarge
+                                                        .fontStyle,
+                                              ),
+                                              fontSize: 32.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w600,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .headlineLarge
+                                                      .fontStyle,
+                                            ),
+                                    pickerBackgroundColor:
+                                        FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                    pickerForegroundColor:
+                                        FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                    selectedDateTimeBackgroundColor:
+                                        FlutterFlowTheme.of(context).primary,
+                                    selectedDateTimeForegroundColor:
+                                        FlutterFlowTheme.of(context).info,
+                                    actionButtonForegroundColor:
+                                        FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                    iconSize: 24.0,
+                                  );
+                                },
+                              );
+
+                              if (_datePickedDate != null) {
+                                safeSetState(() {
+                                  _model.datePicked = DateTime(
+                                    _datePickedDate.year,
+                                    _datePickedDate.month,
+                                    _datePickedDate.day,
+                                  );
+                                });
+                              } else if (_model.datePicked != null) {
+                                safeSetState(() {
+                                  _model.datePicked = getCurrentTimestamp;
+                                });
+                              }
+                            },
+                            child: Container(
+                              width: double.infinity,
+                              height: 50.0,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .primaryBackground,
+                                borderRadius: BorderRadius.circular(8.0),
+                                border: Border.all(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  width: 1.0,
+                                ),
                               ),
-                            ),
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  12.0, 0.0, 12.0, 0.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Select date and time',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          font: GoogleFonts.inter(
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    12.0, 0.0, 12.0, 0.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Select date and time',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            font: GoogleFonts.inter(
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
+                                            ),
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            letterSpacing: 0.0,
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMedium
@@ -386,26 +467,15 @@ class _CrreateAssignementWidgetState extends State<CrreateAssignementWidget> {
                                                     .bodyMedium
                                                     .fontStyle,
                                           ),
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          letterSpacing: 0.0,
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontStyle,
-                                        ),
-                                  ),
-                                  Icon(
-                                    Icons.calendar_today,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    size: 20.0,
-                                  ),
-                                ],
+                                    ),
+                                    Icon(
+                                      Icons.calendar_today,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 20.0,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -462,44 +532,92 @@ class _CrreateAssignementWidgetState extends State<CrreateAssignementWidget> {
                                     ),
                                     child: Padding(
                                       padding: EdgeInsets.all(16.0),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            Icons.cloud_upload_outlined,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                            size: 32.0,
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 8.0, 0.0, 0.0),
-                                            child: Text(
-                                              'Upload Resource File',
-                                              style:
+                                      child: InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          final selectedFiles =
+                                              await selectFiles(
+                                            storageFolderPath:
+                                                'assignment_resources',
+                                            multiFile: false,
+                                          );
+                                          if (selectedFiles != null) {
+                                            safeSetState(() =>
+                                                _model.isDataUploading = true);
+                                            var selectedUploadedFiles =
+                                                <FFUploadedFile>[];
+
+                                            var downloadUrls = <String>[];
+                                            try {
+                                              selectedUploadedFiles =
+                                                  selectedFiles
+                                                      .map(
+                                                          (m) => FFUploadedFile(
+                                                                name: m
+                                                                    .storagePath
+                                                                    .split('/')
+                                                                    .last,
+                                                                bytes: m.bytes,
+                                                              ))
+                                                      .toList();
+
+                                              downloadUrls =
+                                                  await uploadSupabaseStorageFiles(
+                                                bucketName: 'intelliclass',
+                                                selectedFiles: selectedFiles,
+                                              );
+                                            } finally {
+                                              _model.isDataUploading = false;
+                                            }
+                                            if (selectedUploadedFiles.length ==
+                                                    selectedFiles.length &&
+                                                downloadUrls.length ==
+                                                    selectedFiles.length) {
+                                              safeSetState(() {
+                                                _model.uploadedLocalFile =
+                                                    selectedUploadedFiles.first;
+                                                _model.uploadedFileUrl =
+                                                    downloadUrls.first;
+                                              });
+                                            } else {
+                                              safeSetState(() {});
+                                              return;
+                                            }
+                                          }
+                                        },
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            if (_model.uploadedFileUrl != '')
+                                              Icon(
+                                                Icons.cloud_done,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondary,
+                                                size: 32.0,
+                                              ),
+                                            Icon(
+                                              Icons.cloud_upload_outlined,
+                                              color:
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        font: GoogleFonts.inter(
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                        letterSpacing: 0.0,
+                                                      .secondaryText,
+                                              size: 32.0,
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 8.0, 0.0, 0.0),
+                                              child: Text(
+                                                'Upload Resource File',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      font: GoogleFonts.inter(
                                                         fontWeight:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -511,9 +629,26 @@ class _CrreateAssignementWidgetState extends State<CrreateAssignementWidget> {
                                                                 .bodyMedium
                                                                 .fontStyle,
                                                       ),
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontStyle,
+                                                    ),
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -647,10 +782,10 @@ class _CrreateAssignementWidgetState extends State<CrreateAssignementWidget> {
                                           ],
                                         ),
                                         Switch(
-                                          value: _model.switchValue1!,
+                                          value: _model.isVscodeValue!,
                                           onChanged: (newValue) async {
                                             safeSetState(() => _model
-                                                .switchValue1 = newValue);
+                                                .isVscodeValue = newValue);
                                           },
                                           activeColor:
                                               FlutterFlowTheme.of(context)
@@ -715,10 +850,10 @@ class _CrreateAssignementWidgetState extends State<CrreateAssignementWidget> {
                                           ],
                                         ),
                                         Switch(
-                                          value: _model.switchValue2!,
+                                          value: _model.isTerminalValue!,
                                           onChanged: (newValue) async {
                                             safeSetState(() => _model
-                                                .switchValue2 = newValue);
+                                                .isTerminalValue = newValue);
                                           },
                                           activeColor:
                                               FlutterFlowTheme.of(context)
@@ -783,10 +918,10 @@ class _CrreateAssignementWidgetState extends State<CrreateAssignementWidget> {
                                           ],
                                         ),
                                         Switch(
-                                          value: _model.switchValue3!,
+                                          value: _model.isPythonValue!,
                                           onChanged: (newValue) async {
                                             safeSetState(() => _model
-                                                .switchValue3 = newValue);
+                                                .isPythonValue = newValue);
                                           },
                                           activeColor:
                                               FlutterFlowTheme.of(context)
@@ -851,10 +986,10 @@ class _CrreateAssignementWidgetState extends State<CrreateAssignementWidget> {
                                           ],
                                         ),
                                         Switch(
-                                          value: _model.switchValue4!,
+                                          value: _model.isPdfViewerValue!,
                                           onChanged: (newValue) async {
                                             safeSetState(() => _model
-                                                .switchValue4 = newValue);
+                                                .isPdfViewerValue = newValue);
                                           },
                                           activeColor:
                                               FlutterFlowTheme.of(context)
@@ -919,10 +1054,11 @@ class _CrreateAssignementWidgetState extends State<CrreateAssignementWidget> {
                                           ],
                                         ),
                                         Switch(
-                                          value: _model.switchValue5!,
+                                          value: _model.isFileManagerValue!,
                                           onChanged: (newValue) async {
-                                            safeSetState(() => _model
-                                                .switchValue5 = newValue);
+                                            safeSetState(() =>
+                                                _model.isFileManagerValue =
+                                                    newValue);
                                           },
                                           activeColor:
                                               FlutterFlowTheme.of(context)
@@ -1155,10 +1291,10 @@ class _CrreateAssignementWidgetState extends State<CrreateAssignementWidget> {
                                           ),
                                         ),
                                         Switch(
-                                          value: _model.switchValue6!,
+                                          value: _model.isClassmatesValue!,
                                           onChanged: (newValue) async {
                                             safeSetState(() => _model
-                                                .switchValue6 = newValue);
+                                                .isClassmatesValue = newValue);
                                           },
                                           activeColor:
                                               FlutterFlowTheme.of(context)
@@ -1208,10 +1344,10 @@ class _CrreateAssignementWidgetState extends State<CrreateAssignementWidget> {
                                           ),
                                         ),
                                         Switch(
-                                          value: _model.switchValue7!,
+                                          value: _model.isPreviousValue!,
                                           onChanged: (newValue) async {
                                             safeSetState(() => _model
-                                                .switchValue7 = newValue);
+                                                .isPreviousValue = newValue);
                                           },
                                           activeColor:
                                               FlutterFlowTheme.of(context)
@@ -1261,10 +1397,10 @@ class _CrreateAssignementWidgetState extends State<CrreateAssignementWidget> {
                                           ),
                                         ),
                                         Switch(
-                                          value: _model.switchValue8!,
+                                          value: _model.isPlagiaValue!,
                                           onChanged: (newValue) async {
                                             safeSetState(() => _model
-                                                .switchValue8 = newValue);
+                                                .isPlagiaValue = newValue);
                                           },
                                           activeColor:
                                               FlutterFlowTheme.of(context)
@@ -1314,10 +1450,10 @@ class _CrreateAssignementWidgetState extends State<CrreateAssignementWidget> {
                                           ),
                                         ),
                                         Switch(
-                                          value: _model.switchValue9!,
+                                          value: _model.isCamValue!,
                                           onChanged: (newValue) async {
-                                            safeSetState(() => _model
-                                                .switchValue9 = newValue);
+                                            safeSetState(() =>
+                                                _model.isCamValue = newValue);
                                           },
                                           activeColor:
                                               FlutterFlowTheme.of(context)
@@ -1336,14 +1472,29 @@ class _CrreateAssignementWidgetState extends State<CrreateAssignementWidget> {
                               0.0, 0.0, 0.0, 16.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              await ClassesTable().insert({
-                                'name':
+                              await AssignmentsTable().insert({
+                                'class_id': widget.courseID,
+                                'title':
                                     _model.assignementNameTextController.text,
-                                'professor_id': currentUserUid,
+                                'description': _model.textController2.text,
+                                'deadline':
+                                    supaSerialize<DateTime>(_model.datePicked),
+                                'workspace_config': <String, bool?>{
+                                  'VsCode': _model.isVscodeValue,
+                                  'Terminal': _model.isTerminalValue,
+                                  'Python': _model.isPythonValue,
+                                  'PDF Viewer': _model.isPdfViewerValue,
+                                  'File Manager': _model.isFileManagerValue,
+                                },
+                                'fraud_filters': <String, bool?>{
+                                  'previousResponses': _model.isPreviousValue,
+                                  'isCollegues': _model.isClassmatesValue,
+                                  'isOnlinePlagia': _model.isPlagiaValue,
+                                  'isCameraEnabled': _model.isCamValue,
+                                },
+                                'resource_url': _model.uploadedFileUrl,
                               });
-
-                              context.pushNamed(
-                                  ProfessorDashboardWidget.routeName);
+                              context.safePop();
                             },
                             text: 'Create Assignment',
                             options: FFButtonOptions(
